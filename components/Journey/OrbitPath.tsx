@@ -30,12 +30,14 @@ export function OrbitPath() {
     if (lineRef.current) {
       // Animate the dash offset to make the path look alive
       const material = lineRef.current.material as THREE.LineDashedMaterial;
-      material.dashOffset -= 0.05;
+      // Type definitions may not include `dashOffset`; use a narrow any-cast for access
+      (material as any).dashOffset -= 0.05;
     }
   });
 
   return (
-    <line ref={lineRef} geometry={geometry}>
+    // @ts-ignore TSX intrinsic element typing for react-three-fiber
+    <line ref={lineRef as any} geometry={geometry}>
       <lineDashedMaterial
         color="#3ccbff"
         linewidth={1}

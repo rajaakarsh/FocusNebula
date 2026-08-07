@@ -9,7 +9,7 @@ import { SOUNDSCAPES } from "@/lib/constants";
 export const SoundscapesDemo: React.FC = () => {
   const [playingId, setPlayingId] = useState<string | null>(null);
 
-  const iconMap: Record<string, React.ElementType> = {
+  const iconMap: Record<string, React.ComponentType<any>> = {
     Radio,
     Wind,
     CloudRain,
@@ -38,7 +38,7 @@ export const SoundscapesDemo: React.FC = () => {
       {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {SOUNDSCAPES.map((sound) => {
-          const Icon = iconMap[sound.icon] || Music;
+          const Icon: React.ComponentType<any> = iconMap[sound.icon] || Music;
           const isPlaying = playingId === sound.id;
 
           return (
